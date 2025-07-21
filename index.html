@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AISOFT AI 서비스</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-blue: #2563eb;
+      --dark-blue: #1e40af;
+      --mint: #22d3ee;
+      --bg: #f3f4f6;
+      --card-bg: #fff;
+      --shadow: 0 4px 16px rgba(30,64,175,0.08);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Roboto', 'Noto Sans KR', sans-serif;
+      background: var(--bg);
+      color: #222;
+    }
+    header {
+      background: var(--main-blue);
+      color: #fff;
+      padding: 24px 0 16px 0;
+      box-shadow: 0 2px 8px rgba(30,64,175,0.06);
+    }
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .logo {
+      font-size: 2.1rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      display: inline-block;
+    }
+    nav {
+      float: right;
+      margin-top: 8px;
+    }
+    nav a {
+      color: #e0e7ef;
+      text-decoration: none;
+      margin-left: 28px;
+      font-weight: 500;
+      font-size: 1.08rem;
+      transition: color 0.2s;
+    }
+    nav a:hover {
+      color: var(--mint);
+    }
+    .main-title {
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin: 48px 0 32px 0;
+      color: var(--dark-blue);
+    }
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: flex-start;
+      margin-bottom: 60px;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      width: 32%;
+      min-width: 220px;
+      padding: 24px 12px 20px 12px;
+      text-align: center;
+      transition: transform 0.18s, box-shadow 0.18s;
+      position: relative;
+      overflow: hidden;
+      flex: 1 1 32%;
+      max-width: 32%;
+    }
+    .card:hover {
+      transform: translateY(-8px) scale(1.035);
+      box-shadow: 0 8px 32px rgba(30,64,175,0.13);
+      z-index: 2;
+    }
+    .ai-icon {
+      font-size: 3.2rem;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 60px;
+    }
+    .ai-name {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--main-blue);
+    }
+    .ai-desc {
+      font-size: 1.01rem;
+      color: #444;
+      margin-bottom: 18px;
+      min-height: 44px;
+    }
+    .price-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0 auto;
+      background: #f8fafc;
+      border-radius: 10px;
+      overflow: hidden;
+      font-size: 1.01rem;
+      box-shadow: 0 1px 4px rgba(30,64,175,0.04);
+    }
+    .price-table th, .price-table td {
+      padding: 8px 0;
+      text-align: center;
+    }
+    .price-table th {
+      background: var(--mint);
+      color: #0e1726;
+      font-weight: 700;
+    }
+    .price-table td {
+      color: var(--dark-blue);
+      font-weight: 500;
+    }
+    footer {
+      background: #e5e7eb;
+      color: #222;
+      text-align: center;
+      padding: 28px 0 18px 0;
+      font-size: 1.01rem;
+      margin-top: 60px;
+    }
+    @media (max-width: 900px) {
+      .cards { flex-direction: column; align-items: center; gap: 24px; }
+      .card { width: 90%; max-width: 350px; }
+    }
+    @media (max-width: 600px) {
+      .main-title { font-size: 1.3rem; }
+      .card { padding: 22px 8px 18px 8px; }
+      .ai-icon { font-size: 2.1rem; height: 38px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container" style="overflow: hidden;">
+      <span class="logo">AISOFT</span>
+      <nav>
+        <a href="#">홈</a>
+        <a href="#services">서비스</a>
+        <a href="#contact">견적문의</a>
+      </nav>
+    </div>
+    <div class="container" style="margin-top: 18px; background: #e0e7ef; color: #1e40af; border-radius: 12px; padding: 22px 18px 18px 18px; box-shadow: 0 2px 8px rgba(30,64,175,0.08);">
+      <div style="font-size: 1.18rem; font-weight: 700; margin-bottom: 8px;">해외 AI/에듀테크SW 구독서비스를 쉽게 사용할 수 있습니다.</div>
+      <div style="font-size: 1.45rem; color: var(--main-blue); font-weight: 900; margin-bottom: 10px; letter-spacing: 0.5px; text-shadow: 0 2px 8px rgba(37,99,235,0.08);">AISOFT AI 라이선스 구매 대행 서비스 활용해 보세요.</div>
+      <ul style="margin: 0 0 8px 18px; padding: 0; font-size: 1.01rem;">
+        <li>1. 별도 계정을 생성해서 즉각 사용할 수 있는 라이선스를 제공합니다.</li>
+        <li>2. 타 구매 대행 서비스업체와는 차별적인 가격으로 기관, 학교, 개인에게 납품이 가능합니다.</li>
+        <li>3. 견적문의: admin@eiaisoft.com, 010-3349-4659</li>
+      </ul>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+      <div class="main-title">AISOFT가 제공하는 AI 서비스</div>
+      <div style="text-align: right; margin-bottom: 18px;">
+        <input id="searchInput" type="text" placeholder="AI 서비스명, 기능, 가격 검색..." style="padding: 8px 12px; border-radius: 8px; border: 1px solid #b6c2e1; font-size: 1rem; width: 260px;">
+      </div>
+      <div class="cards" id="ai-cards">
+        <!-- JS로 카드가 생성됩니다 -->
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div style="font-weight: 700; font-size: 1.08rem;">AISOFT</div>
+    <div>010-3349-4659, admin@eiaisoft.com</div>
+    <div>부산광역시 연제구 해맞이로127번길 5, 501호</div>
+    <div>대표자: 김미혜, 사업자등록번호: 834-09-02928, 업태: 정보통신업</div>
+    <div style="margin-top: 8px; color: #666;">© 2025 AISOFT. All rights reserved.</div>
+  </footer>
+  <script>
+    // 각 AI 서비스 정보
+    const aiServices = [
+      {
+        name: 'ChatGPT Plus',
+        icon: '💬',
+        desc: '최신 GPT-4 Turbo 모델, 빠른 응답, 우선 지원, 플러그인 사용 가능',
+        prices: ['9,900원', '99,000원'],
+        plans: ['1개월', '12개월'],
+        group: 'ChatGPT'
+      },
+      {
+        name: 'ChatGPT Team (2계정)',
+        icon: '👥',
+        desc: '팀 단위 협업, 멤버 관리, 공유 채팅, 팀용 파일 저장, GPT-4 Turbo, 플러그인',
+        prices: ['19,000원', '199,000원'],
+        plans: ['1개월', '12개월'],
+        group: 'ChatGPT'
+      },
+      {
+        name: 'ChatGPT Pro',
+        icon: '💼',
+        desc: '기업/전문가용, API 제공, 대용량 처리, 보안 강화, GPT-4 Turbo',
+        prices: ['39,000원', '399,000원'],
+        plans: ['1개월', '12개월'],
+        group: 'ChatGPT'
+      },
+      {
+        name: 'Gamma Plus',
+        icon: '📊',
+        desc: 'AI 프레젠테이션 자동 생성, 다양한 템플릿, 협업 기능, PDF/슬라이드 내보내기',
+        prices: ['7,900원', '79,000원'],
+        plans: ['1개월', '12개월'],
+        group: 'Gamma'
+      },
+      {
+        name: 'Gamma Pro',
+        icon: '📊',
+        desc: 'Plus 기능 포함, 고급 디자인, 무제한 내보내기, 팀 관리',
+        prices: ['15,000원', '150,000원'],
+        plans: ['1개월', '12개월'],
+        group: 'Gamma'
+      },
+      {
+        name: 'Claude Pro',
+        icon: '🤖',
+        desc: 'Anthropic의 첨단 언어모델, 문서 요약/분석, 대용량 입력, 빠른 응답',
+        prices: ['10,000원', '100,000원'],
+        plans: ['1개월', '12개월'],
+        group: 'Claude'
+      },
+      {
+        name: 'Claude Team (5계정)',
+        icon: '🤝',
+        desc: '팀 단위 협업, 멤버 관리, 대용량 문서 처리, 팀용 파일 저장',
+        prices: ['45,000원', '450,000원'],
+        plans: ['1개월', '12개월'],
+        group: 'Claude'
+      },
+      {
+        name: 'Claude Max',
+        icon: '🚀',
+        desc: '최대 입력/출력, 초고속 처리, 대용량 문서 분석, 우선 지원',
+        prices: ['25,000원', '250,000원'],
+        plans: ['1개월', '12개월'],
+        group: 'Claude'
+      },
+      {
+        name: 'Perplexity Pro',
+        icon: '🔎',
+        desc: '실시간 웹 검색, 인용 기반 답변, PDF 업로드, GPT-4 Turbo, Copilot',
+        prices: ['12,000원', '120,000원'],
+        plans: ['1개월', '12개월'],
+        group: 'Perplexity'
+      }
+    ];
+    // 카드 생성 함수 (검색 포함)
+    const cardsDiv = document.getElementById('ai-cards');
+    const searchInput = document.getElementById('searchInput');
+    function renderCards(filter = '') {
+      cardsDiv.innerHTML = '';
+      // 그룹 구분 없이 3개씩 한 줄에 배치
+      const filtered = aiServices.filter(ai => {
+        const searchTarget = (ai.name + ai.desc + ai.prices.join('')).toLowerCase();
+        return !filter || searchTarget.includes(filter.toLowerCase());
+      });
+      for (let i = 0; i < filtered.length; i += 3) {
+        const row = document.createElement('div');
+        row.className = 'cards-row';
+        row.style.display = 'flex';
+        row.style.flexWrap = 'wrap';
+        row.style.gap = '2%';
+        row.style.marginBottom = '32px';
+        row.style.justifyContent = 'flex-start';
+        filtered.slice(i, i + 3).forEach(ai => {
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.innerHTML = `
+            <div class="ai-icon">${ai.icon}</div>
+            <div class="ai-name">${ai.name}</div>
+            <div class="ai-desc">${ai.desc}</div>
+            <table class="price-table">
+              <tr>${ai.plans.map(p => `<th>${p}</th>`).join('')}</tr>
+              <tr>${ai.prices.map(p => `<td>${p}</td>`).join('')}</tr>
+            </table>
+          `;
+          row.appendChild(card);
+        });
+        cardsDiv.appendChild(row);
+      }
+      if (!cardsDiv.innerHTML) {
+        cardsDiv.innerHTML = '<div style="width:100%;text-align:center;color:#888;padding:32px 0;">검색 결과가 없습니다.</div>';
+      }
+    }
+    renderCards();
+    searchInput.addEventListener('input', e => {
+      renderCards(e.target.value);
+    });
+  </script>
+</body>
+</html> 
