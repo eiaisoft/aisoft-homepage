@@ -181,12 +181,40 @@
     </div>
   </main>
   <footer>
-    <div style="font-weight: 700; font-size: 1.08rem;">에이아이소프트</div>
+    <div style="font-weight: 700; font-size: 1.08rem;">에이아이소프트(AISOFT)</div>
     <div>010-3349-4659, admin@eiaisoft.com</div>
     <div>부산광역시 연제구 해맞이로127번길 5, 501호</div>
     <div>대표자: 김미혜, 사업자등록번호: 834-09-02928, 업태: 정보통신업</div>
     <div style="margin-top: 8px; color: #666;">© 2025 AISOFT. All rights reserved.</div>
   </footer>
+
+  <!-- 견적문의 폼 섹션 -->
+  <section id="contact" style="background:#fff;max-width:600px;margin:48px auto 32px auto;padding:32px 28px 28px 28px;border-radius:18px;box-shadow:0 4px 24px rgba(30,64,175,0.10);">
+    <h2 style="text-align:center;color:#2563eb;margin-bottom:24px;">견적문의</h2>
+    <form id="estimateForm">
+      <div style="margin-bottom:16px;">
+        <label>성명/기관<br><input type="text" name="name" required style="width:100%;padding:8px;margin-top:4px;"></label>
+      </div>
+      <div style="margin-bottom:16px;">
+        <label>서비스명/라이선스(요금제)종류/기간/라이선스 수<br><input type="text" name="service" required style="width:100%;padding:8px;margin-top:4px;"></label>
+      </div>
+      <div style="margin-bottom:16px;">
+        <label>기타 요청사항<br><textarea name="etc" rows="3" style="width:100%;padding:8px;margin-top:4px;"></textarea></label>
+      </div>
+      <div style="margin-bottom:16px;">
+        <label>e-mail<br><input type="email" name="email" required style="width:100%;padding:8px;margin-top:4px;"></label>
+      </div>
+      <div style="margin-bottom:16px;">
+        <label>연락처<br><input type="text" name="phone" required style="width:100%;padding:8px;margin-top:4px;"></label>
+      </div>
+      <div style="margin-bottom:16px;">
+        <label style="font-size:0.98rem;"><input type="checkbox" name="agree" required> 개인정보 수집 및 이용에 동의합니다.</label>
+      </div>
+      <button type="submit" style="width:100%;background:#2563eb;color:#fff;padding:12px 0;font-size:1.15rem;border:none;border-radius:8px;font-weight:700;cursor:pointer;">견적문의 보내기</button>
+    </form>
+    <div id="formMsg" style="margin-top:18px;text-align:center;color:#2563eb;font-weight:600;display:none;"></div>
+  </section>
+
   <script>
     // 각 AI 서비스 정보
     const aiServices = [
@@ -304,6 +332,36 @@
     renderCards();
     searchInput.addEventListener('input', e => {
       renderCards(e.target.value);
+    });
+
+    // 견적문의 폼 처리
+    document.getElementById('estimateForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const form = e.target;
+      if (!form.agree.checked) {
+        alert('개인정보 수집 및 이용에 동의해 주세요.');
+        return;
+      }
+      const name = form.name.value.trim();
+      const service = form.service.value.trim();
+      const etc = form.etc.value.trim();
+      const email = form.email.value.trim();
+      const phone = form.phone.value.trim();
+      // 메일 내용 생성
+      const subject = encodeURIComponent('[AISOFT 견적문의] ' + name);
+      const body = encodeURIComponent(
+        '성명/기관: ' + name + '\n' +
+        '서비스명/라이선스(요금제)종류/기간/라이선스 수: ' + service + '\n' +
+        '기타 요청사항: ' + etc + '\n' +
+        'e-mail: ' + email + '\n' +
+        '연락처: ' + phone + '\n' +
+        '개인정보 수집 및 이용 동의: 동의함'
+      );
+      // mailto 링크로 이메일 클라이언트 호출
+      window.location.href = `mailto:admin@eiaisoft.com?subject=${subject}&body=${body}`;
+      document.getElementById('formMsg').style.display = 'block';
+      document.getElementById('formMsg').innerText = '메일 작성 창이 열립니다. 메일을 보내주세요!';
+      form.reset();
     });
   </script>
 </body>
