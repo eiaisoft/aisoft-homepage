@@ -27,6 +27,11 @@
       color: #fff;
       padding: 24px 0 16px 0;
       box-shadow: 0 2px 8px rgba(30,64,175,0.06);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
     }
     .container {
       max-width: 1300px;
@@ -138,6 +143,23 @@
       font-size: 1.01rem;
       margin-top: 60px;
     }
+    /* 안내문구 고정 스타일 */
+    .fixed-announcement {
+      background: #e0e7ef;
+      color: #1e40af;
+      border-radius: 12px;
+      padding: 22px 18px 18px 18px;
+      box-shadow: 0 2px 8px rgba(30,64,175,0.08);
+      position: fixed;
+      top: 72px;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+    }
+    /* main에 패딩 추가 (header+안내문구 높이만큼) */
+    main {
+      padding-top: 210px;
+    }
     @media (max-width: 900px) {
       .cards { flex-direction: column; align-items: center; gap: 24px; }
       .card { width: 90%; max-width: 350px; }
@@ -146,6 +168,8 @@
       .main-title { font-size: 1.3rem; }
       .card { padding: 22px 8px 18px 8px; }
       .ai-icon { font-size: 2.1rem; height: 38px; }
+      main { padding-top: 320px; }
+      .fixed-announcement { top: 56px; }
     }
   </style>
 </head>
@@ -159,7 +183,9 @@
         <a href="#contact">견적문의</a>
       </nav>
     </div>
-    <div class="container" style="margin-top: 18px; background: #e0e7ef; color: #1e40af; border-radius: 12px; padding: 22px 18px 18px 18px; box-shadow: 0 2px 8px rgba(30,64,175,0.08);">
+  </header>
+  <div class="fixed-announcement">
+    <div class="container">
       <div style="font-size: 1.18rem; font-weight: 700; margin-bottom: 8px;">해외 AI/에듀테크SW 구독서비스를 쉽게 사용할 수 있습니다.</div>
       <div style="font-size: 1.45rem; color: var(--main-blue); font-weight: 900; margin-bottom: 10px; letter-spacing: 0.5px; text-shadow: 0 2px 8px rgba(37,99,235,0.08);">AISOFT AI 라이선스 구매 대행 서비스 활용해 보세요.</div>
       <ul style="margin: 0 0 8px 18px; padding: 0; font-size: 1.01rem;">
@@ -168,7 +194,7 @@
         <li>3. 견적문의: admin@eiaisoft.com, 010-3349-4659</li>
       </ul>
     </div>
-  </header>
+  </div>
   <main>
     <div class="container">
       <div class="main-title">AISOFT가 제공하는 AI 서비스</div>
@@ -178,34 +204,8 @@
       <div class="cards" id="ai-cards">
         <!-- JS로 카드가 생성됩니다 -->
       </div>
+      <!-- 기존 견적문의 폼 섹션(main 내) 제거 -->
     </div>
-
-    <!-- 견적문의 폼 섹션을 main 태그 안, 서비스 안내 바로 아래로 이동 -->
-    <section id="contact" style="background:#fff;max-width:600px;margin:48px auto 32px auto;padding:32px 28px 28px 28px;border-radius:18px;box-shadow:0 4px 24px rgba(30,64,175,0.10);">
-      <h2 style="text-align:center;color:#2563eb;margin-bottom:24px;">견적문의</h2>
-      <form id="estimateForm">
-        <div style="margin-bottom:16px;">
-          <label>성명/기관<br><input type="text" name="name" required style="width:100%;padding:8px;margin-top:4px;"></label>
-        </div>
-        <div style="margin-bottom:16px;">
-          <label>서비스명/라이선스(요금제)종류/기간/라이선스 수<br><input type="text" name="service" required style="width:100%;padding:8px;margin-top:4px;"></label>
-        </div>
-        <div style="margin-bottom:16px;">
-          <label>기타 요청사항<br><textarea name="etc" rows="3" style="width:100%;padding:8px;margin-top:4px;"></textarea></label>
-        </div>
-        <div style="margin-bottom:16px;">
-          <label>e-mail<br><input type="email" name="email" required style="width:100%;padding:8px;margin-top:4px;"></label>
-        </div>
-        <div style="margin-bottom:16px;">
-          <label>연락처<br><input type="text" name="phone" required style="width:100%;padding:8px;margin-top:4px;"></label>
-        </div>
-        <div style="margin-bottom:16px;">
-          <label style="font-size:0.98rem;"><input type="checkbox" name="agree" required> 개인정보 수집 및 이용에 동의합니다.</label>
-        </div>
-        <button type="submit" style="width:100%;background:#2563eb;color:#fff;padding:12px 0;font-size:1.15rem;border:none;border-radius:8px;font-weight:700;cursor:pointer;">견적문의 보내기</button>
-      </form>
-      <div id="formMsg" style="margin-top:18px;text-align:center;color:#2563eb;font-weight:600;display:none;"></div>
-    </section>
   </main>
   <footer>
     <div style="font-weight: 700; font-size: 1.08rem;">에이아이소프트(AISOFT)</div>
@@ -215,6 +215,42 @@
     <div style="margin-top: 8px; color: #666;">© 2025 AISOFT. All rights reserved.</div>
   </footer>
 
+  <!-- 오른쪽 상단 + 드래그 가능 견적문의 폼 -->
+  <div id="estimateModal" style="display:none;position:fixed;top:110px;right:32px;width:420px;max-width:95vw;min-width:320px;background:#fff;box-shadow:0 8px 32px rgba(30,64,175,0.18);z-index:2000;overflow-y:auto;border-radius:18px;">
+    <div id="estimateModalHeader" style="display:flex;justify-content:space-between;align-items:center;padding:18px 22px 0 22px;cursor:move;user-select:none;border-radius:18px 18px 0 0;">
+      <h2 style="color:#2563eb;margin:0;font-size:1.35rem;">견적문의</h2>
+      <button id="closeEstimateModal" style="background:none;border:none;font-size:2rem;line-height:1;color:#888;cursor:pointer;">&times;</button>
+    </div>
+    <form id="estimateForm" style="padding:0 22px 22px 22px;">
+      <div style="margin-bottom:16px;">
+        <label>성명/기관<br><input type="text" name="name" required style="width:100%;padding:8px;margin-top:4px;"></label>
+      </div>
+      <div style="margin-bottom:16px;">
+        <label>서비스명/라이선스(요금제)종류/기간/라이선스 수<br><input type="text" name="service" required style="width:100%;padding:8px;margin-top:4px;"></label>
+      </div>
+      <div style="margin-bottom:16px;">
+        <label>기타 요청사항<br><textarea name="etc" rows="3" style="width:100%;padding:8px;margin-top:4px;"></textarea></label>
+      </div>
+      <div style="margin-bottom:16px;">
+        <label>e-mail<br><input type="email" name="email" required style="width:100%;padding:8px;margin-top:4px;"></label>
+      </div>
+      <div style="margin-bottom:16px;">
+        <label>연락처<br><input type="text" name="phone" required style="width:100%;padding:8px;margin-top:4px;"></label>
+      </div>
+      <div style="margin-bottom:16px;">
+        <div style="font-size:0.97rem; background:#f3f4f6; border-radius:8px; padding:10px 12px 10px 12px; margin-bottom:8px; color:#222;">
+          <b>1. 수집하는 개인정보 항목</b> : 성명/기관명, 이메일주소, 연락처<br>
+          <b>2. 개인정보의 수집 및 이용목적</b> : 문의 접수/처리<br>
+          <b>3. 개인정보의 이용기간</b> : 문의 답변 후 개인정보 폐기
+        </div>
+        <label style="font-size:0.98rem;"><input type="checkbox" name="agree" required> 개인정보 수집 및 이용에 동의합니다.</label>
+      </div>
+      <button id="sendGmailBtn" type="button" style="width:calc(60% - 4px);background:#2563eb;color:#fff;padding:12px 0;font-size:1.15rem;border:none;border-radius:8px 0 0 8px;font-weight:700;cursor:pointer;margin-top:8px;display:inline-block;">견적문의(Gmail) 보내기</button>
+      <button id="resetFormBtn" type="button" style="width:calc(40% - 4px);background:#e5e7eb;color:#222;padding:12px 0;font-size:1.15rem;border:none;border-radius:0 8px 8px 0;font-weight:700;cursor:pointer;margin-top:8px;display:inline-block;">작성내용 초기화</button>
+      <div id="gmailNotice" style="margin-top:10px;color:#ea4335;font-size:0.98rem;">Gmail이 없는 경우 본인의 다른 메일앱을 사용하여 위 문의사항을 적어서 보내주세요.</div>
+    </form>
+    <div id="formMsg" style="margin:0 22px 18px 22px;text-align:center;color:#2563eb;font-weight:600;display:none;"></div>
+  </div>
   <script>
     // 각 AI 서비스 정보
     const aiServices = [
@@ -230,7 +266,7 @@
         name: 'ChatGPT Team (2계정)',
         icon: '👥',
         desc: '팀 단위 협업, 멤버 관리, 공유 채팅, 팀용 파일 저장, GPT-4 Turbo, 플러그인',
-        prices: ['108000원', '1,380,000원'],
+        prices: ['108,000원', '1,380,000원'],
         plans: ['1개월', '12개월'],
         group: 'ChatGPT'
       },
@@ -334,6 +370,76 @@
       renderCards(e.target.value);
     });
 
+    // 견적문의 모달 열기/닫기
+    document.querySelector('nav a[href="#contact"]').addEventListener('click', function(e) {
+      e.preventDefault();
+      const modal = document.getElementById('estimateModal');
+      modal.style.display = 'block';
+      // 오른쪽 상단으로 초기화
+      modal.style.top = '110px';
+      modal.style.right = '32px';
+      modal.style.left = '';
+      modal.style.transform = '';
+    });
+    document.getElementById('closeEstimateModal').addEventListener('click', function() {
+      document.getElementById('estimateModal').style.display = 'none';
+    });
+    // 드래그 이동 기능
+    (function() {
+      const modal = document.getElementById('estimateModal');
+      const header = document.getElementById('estimateModalHeader');
+      let isDragging = false, startX, startY, startLeft, startTop;
+      header.addEventListener('mousedown', function(e) {
+        isDragging = true;
+        startX = e.clientX;
+        startY = e.clientY;
+        // 현재 위치(px) 계산
+        const rect = modal.getBoundingClientRect();
+        startLeft = rect.left;
+        startTop = rect.top;
+        document.body.style.userSelect = 'none';
+      });
+      document.addEventListener('mousemove', function(e) {
+        if (!isDragging) return;
+        let newLeft = startLeft + (e.clientX - startX);
+        let newTop = startTop + (e.clientY - startY);
+        // 화면 경계 체크 (optional)
+        const minMargin = 20;
+        newLeft = Math.max(minMargin, Math.min(window.innerWidth - modal.offsetWidth - minMargin, newLeft));
+        newTop = Math.max(minMargin, Math.min(window.innerHeight - modal.offsetHeight - minMargin, newTop));
+        modal.style.left = newLeft + 'px';
+        modal.style.top = newTop + 'px';
+        modal.style.right = '';
+        modal.style.transform = 'none';
+      });
+      document.addEventListener('mouseup', function() {
+        isDragging = false;
+        document.body.style.userSelect = '';
+      });
+    })();
+    // 견적문의(Gmail) 보내기 버튼 클릭 시 Gmail compose로 이동
+    document.getElementById('sendGmailBtn').onclick = function() {
+      const form = document.getElementById('estimateForm');
+      const name = form.name.value.trim();
+      const service = form.service.value.trim();
+      const etc = form.etc.value.trim();
+      const email = form.email.value.trim();
+      const phone = form.phone.value.trim();
+      const subject = '[AISOFT 견적문의] ' + name;
+      const body =
+        '성명/기관: ' + name + '\n' +
+        '서비스명/라이선스(요금제)종류/기간/라이선스 수: ' + service + '\n' +
+        '기타 요청사항: ' + etc + '\n' +
+        'e-mail: ' + email + '\n' +
+        '연락처: ' + phone + '\n' +
+        '개인정보 수집 및 이용 동의: 동의함';
+      const gmailUrl = `https://mail.google.com/mail/?view=cm&to=admin@eiaisoft.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.open(gmailUrl, '_blank');
+    };
+    // 작성내용 초기화 버튼 클릭 시 폼 리셋
+    document.getElementById('resetFormBtn').onclick = function() {
+      document.getElementById('estimateForm').reset();
+    };
     // 견적문의 폼 처리
     document.getElementById('estimateForm').addEventListener('submit', function(e) {
       e.preventDefault();
@@ -342,25 +448,10 @@
         alert('개인정보 수집 및 이용에 동의해 주세요.');
         return;
       }
-      const name = form.name.value.trim();
-      const service = form.service.value.trim();
-      const etc = form.etc.value.trim();
-      const email = form.email.value.trim();
-      const phone = form.phone.value.trim();
-      // 메일 내용 생성
-      const subject = encodeURIComponent('[AISOFT 견적문의] ' + name);
-      const body = encodeURIComponent(
-        '성명/기관: ' + name + '\n' +
-        '서비스명/라이선스(요금제)종류/기간/라이선스 수: ' + service + '\n' +
-        '기타 요청사항: ' + etc + '\n' +
-        'e-mail: ' + email + '\n' +
-        '연락처: ' + phone + '\n' +
-        '개인정보 수집 및 이용 동의: 동의함'
-      );
-      // mailto 링크로 이메일 클라이언트 호출
-      window.location.href = `mailto:admin@eiaisoft.com?subject=${subject}&body=${body}`;
-      document.getElementById('formMsg').style.display = 'block';
-      document.getElementById('formMsg').innerText = '메일 작성 창이 열립니다. 메일을 보내주세요!';
+      // 안내문구만 표시, 중복 안내 방지
+      const msgDiv = document.getElementById('formMsg');
+      msgDiv.style.display = 'block';
+      msgDiv.innerHTML = '';
       form.reset();
     });
   </script>
