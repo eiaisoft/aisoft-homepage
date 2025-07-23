@@ -179,6 +179,33 @@
         <!-- JS로 카드가 생성됩니다 -->
       </div>
     </div>
+
+    <!-- 견적문의 폼 섹션을 main 태그 안, 서비스 안내 바로 아래로 이동 -->
+    <section id="contact" style="background:#fff;max-width:600px;margin:48px auto 32px auto;padding:32px 28px 28px 28px;border-radius:18px;box-shadow:0 4px 24px rgba(30,64,175,0.10);">
+      <h2 style="text-align:center;color:#2563eb;margin-bottom:24px;">견적문의</h2>
+      <form id="estimateForm">
+        <div style="margin-bottom:16px;">
+          <label>성명/기관<br><input type="text" name="name" required style="width:100%;padding:8px;margin-top:4px;"></label>
+        </div>
+        <div style="margin-bottom:16px;">
+          <label>서비스명/라이선스(요금제)종류/기간/라이선스 수<br><input type="text" name="service" required style="width:100%;padding:8px;margin-top:4px;"></label>
+        </div>
+        <div style="margin-bottom:16px;">
+          <label>기타 요청사항<br><textarea name="etc" rows="3" style="width:100%;padding:8px;margin-top:4px;"></textarea></label>
+        </div>
+        <div style="margin-bottom:16px;">
+          <label>e-mail<br><input type="email" name="email" required style="width:100%;padding:8px;margin-top:4px;"></label>
+        </div>
+        <div style="margin-bottom:16px;">
+          <label>연락처<br><input type="text" name="phone" required style="width:100%;padding:8px;margin-top:4px;"></label>
+        </div>
+        <div style="margin-bottom:16px;">
+          <label style="font-size:0.98rem;"><input type="checkbox" name="agree" required> 개인정보 수집 및 이용에 동의합니다.</label>
+        </div>
+        <button type="submit" style="width:100%;background:#2563eb;color:#fff;padding:12px 0;font-size:1.15rem;border:none;border-radius:8px;font-weight:700;cursor:pointer;">견적문의 보내기</button>
+      </form>
+      <div id="formMsg" style="margin-top:18px;text-align:center;color:#2563eb;font-weight:600;display:none;"></div>
+    </section>
   </main>
   <footer>
     <div style="font-weight: 700; font-size: 1.08rem;">에이아이소프트(AISOFT)</div>
@@ -187,33 +214,6 @@
     <div>대표자: 김미혜, 사업자등록번호: 834-09-02928, 업태: 정보통신업</div>
     <div style="margin-top: 8px; color: #666;">© 2025 AISOFT. All rights reserved.</div>
   </footer>
-
-  <!-- 견적문의 폼 섹션 -->
-  <section id="contact" style="background:#fff;max-width:600px;margin:48px auto 32px auto;padding:32px 28px 28px 28px;border-radius:18px;box-shadow:0 4px 24px rgba(30,64,175,0.10);">
-    <h2 style="text-align:center;color:#2563eb;margin-bottom:24px;">견적문의</h2>
-    <form id="estimateForm">
-      <div style="margin-bottom:16px;">
-        <label>성명/기관<br><input type="text" name="name" required style="width:100%;padding:8px;margin-top:4px;"></label>
-      </div>
-      <div style="margin-bottom:16px;">
-        <label>서비스명/라이선스(요금제)종류/기간/라이선스 수<br><input type="text" name="service" required style="width:100%;padding:8px;margin-top:4px;"></label>
-      </div>
-      <div style="margin-bottom:16px;">
-        <label>기타 요청사항<br><textarea name="etc" rows="3" style="width:100%;padding:8px;margin-top:4px;"></textarea></label>
-      </div>
-      <div style="margin-bottom:16px;">
-        <label>e-mail<br><input type="email" name="email" required style="width:100%;padding:8px;margin-top:4px;"></label>
-      </div>
-      <div style="margin-bottom:16px;">
-        <label>연락처<br><input type="text" name="phone" required style="width:100%;padding:8px;margin-top:4px;"></label>
-      </div>
-      <div style="margin-bottom:16px;">
-        <label style="font-size:0.98rem;"><input type="checkbox" name="agree" required> 개인정보 수집 및 이용에 동의합니다.</label>
-      </div>
-      <button type="submit" style="width:100%;background:#2563eb;color:#fff;padding:12px 0;font-size:1.15rem;border:none;border-radius:8px;font-weight:700;cursor:pointer;">견적문의 보내기</button>
-    </form>
-    <div id="formMsg" style="margin-top:18px;text-align:center;color:#2563eb;font-weight:600;display:none;"></div>
-  </section>
 
   <script>
     // 각 AI 서비스 정보
